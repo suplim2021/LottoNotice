@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>เลขอั้น Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&family=Sarabun:wght@800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&family=Sarabun:wght@800&display=swap"
+    rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    :root { --mc: #005CEF; }
+    :root {
+      --mc: #005CEF;
+    }
 
     body {
       font-family: 'Kanit', sans-serif;
@@ -30,10 +41,11 @@
       padding: 18px;
       width: 256px;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,.14);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .14);
       position: sticky;
       top: 24px;
     }
+
     #controls h2 {
       font-size: 14px;
       font-weight: 800;
@@ -41,7 +53,10 @@
       margin-bottom: 14px;
     }
 
-    .field { margin-bottom: 11px; }
+    .field {
+      margin-bottom: 11px;
+    }
+
     .field label {
       display: block;
       font-size: 11px;
@@ -51,6 +66,7 @@
       text-transform: uppercase;
       letter-spacing: .04em;
     }
+
     .field input[type="date"],
     .field select,
     .field textarea {
@@ -64,9 +80,14 @@
       transition: border-color .15s;
       background: #fff;
     }
+
     .field input[type="date"]:focus,
     .field select:focus,
-    .field textarea:focus { outline: none; border-color: var(--mc); }
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--mc);
+    }
+
     .field textarea {
       height: 220px;
       resize: vertical;
@@ -81,6 +102,7 @@
       align-items: center;
       gap: 8px;
     }
+
     .color-row input[type="color"] {
       width: 38px;
       height: 34px;
@@ -90,7 +112,12 @@
       cursor: pointer;
       flex-shrink: 0;
     }
-    .color-row input[type="color"]:focus { outline: none; border-color: var(--mc); }
+
+    .color-row input[type="color"]:focus {
+      outline: none;
+      border-color: var(--mc);
+    }
+
     .color-hex {
       font-size: 13px;
       font-family: 'Courier New', monospace;
@@ -101,6 +128,7 @@
       flex: 1;
       background: #fff;
     }
+
     .color-reset {
       font-size: 11px;
       color: #999;
@@ -112,9 +140,16 @@
       padding: 0;
       flex-shrink: 0;
     }
-    .color-reset:hover { color: #555; }
 
-    .divider { border: none; border-top: 1px solid #eee; margin: 13px 0; }
+    .color-reset:hover {
+      color: #555;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 13px 0;
+    }
 
     .toggle-label {
       display: flex;
@@ -127,8 +162,13 @@
       user-select: none;
       line-height: 1.4;
     }
+
     .toggle-label input[type="checkbox"] {
-      width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; margin-top: 1px;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .btn {
@@ -144,9 +184,20 @@
       margin-bottom: 7px;
       transition: opacity .15s;
     }
-    .btn:hover { opacity: .86; }
-    .btn-blue { background: var(--mc); color: #fff; }
-    .btn-gray { background: #555; color: #fff; }
+
+    .btn:hover {
+      opacity: .86;
+    }
+
+    .btn-blue {
+      background: var(--mc);
+      color: #fff;
+    }
+
+    .btn-gray {
+      background: #555;
+      color: #fff;
+    }
 
     .hint {
       font-size: 11px;
@@ -154,7 +205,10 @@
       line-height: 1.6;
       margin-top: 8px;
     }
-    .hint strong { color: #888; }
+
+    .hint strong {
+      color: #888;
+    }
 
     /* ─────────────────────────────────────
        CARD
@@ -163,7 +217,7 @@
       background: #fff;
       width: 680px;
       font-family: 'Kanit', sans-serif;
-      box-shadow: 0 4px 16px rgba(0,0,0,.18);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
     }
 
     /* Header */
@@ -181,7 +235,9 @@
     }
 
     /* Body */
-    .c-body { padding: 22px 26px 12px; }
+    .c-body {
+      padding: 22px 26px 12px;
+    }
 
     /* Row: [numbers] [arrow] [label] */
     .section {
@@ -195,7 +251,12 @@
       gap: 22px;
       flex: 0 0 auto;
     }
-    .nums-col { display: flex; flex-direction: column; }
+
+    .nums-col {
+      display: flex;
+      flex-direction: column;
+    }
+
     .num {
       font-family: 'Sarabun', sans-serif;
       color: var(--mc);
@@ -239,9 +300,11 @@
       line-height: 1.75;
       color: #111;
     }
+
     .c-footer .hl {
       font-size: 26px;
       font-weight: 900;
+      color: red;
     }
 
     /* ─────────────────────────────────────
@@ -250,247 +313,266 @@
     #card.no-detail .arrow,
     #card.no-detail .lbl,
     #card.no-detail .sep,
-    #card.no-detail .c-footer { display: none; }
+    #card.no-detail .c-footer {
+      display: none;
+    }
 
     /* ─────────────────────────────────────
        PRINT — keep full color
     ───────────────────────────────────── */
     @media print {
-      @page { size: A4; margin: 15mm; }
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-      body { background: white; padding: 0; display: block; }
-      #controls { display: none !important; }
-      #card { width: 100%; box-shadow: none; }
+
+      body {
+        background: white;
+        padding: 0;
+        display: block;
+      }
+
+      #controls {
+        display: none !important;
+      }
+
+      #card {
+        width: 100%;
+        box-shadow: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ── CONTROLS ── -->
-<div id="controls">
-  <h2>⚙ เลขอั้น Generator</h2>
+  <!-- ── CONTROLS ── -->
+  <div id="controls">
+    <h2>⚙ เลขอั้น Generator</h2>
 
-  <div class="field">
-    <label>วันที่</label>
-    <input type="date" id="iDate">
+    <div class="field">
+      <label>วันที่</label>
+      <input type="date" id="iDate">
+    </div>
+
+    <div class="field">
+      <label>เวลาปิดรับ</label>
+      <select id="iTime">
+        <option value="14.00 น.">14.00 น.</option>
+        <option value="14.30 น.">14.30 น.</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>ตัวเลข (บรรทัดละเลข)</label>
+      <textarea id="iNums" spellcheck="false"
+        placeholder="เลข 3 ตัว เช่น 359&#10;เลข 2 ตัว เช่น 05-50&#10;&#10;วางได้เลย ไม่ต้องเรียงประเภท"></textarea>
+    </div>
+
+    <div class="field">
+      <label>สีหลัก</label>
+      <div class="color-row">
+        <input type="color" id="colorPicker" value="#005CEF">
+        <input type="text" class="color-hex" id="colorHex" maxlength="7" value="#005CEF">
+        <button class="color-reset" onclick="resetColor()">reset</button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <label class="toggle-label">
+      <input type="checkbox" id="toggleDetail">
+      โชว์เฉพาะตัวเลข + วันที่<br>(ปริ้นแบบเรียบ)
+    </label>
+
+    <button class="btn btn-blue" onclick="exportJPG()">📷 Export JPG</button>
+    <button class="btn btn-gray" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+    <p class="hint">
+      • เลข 3 ตัว: ตัวเลขล้วน <strong>359</strong><br>
+      • เลข 2 ตัว: มีขีด <strong>05-50</strong><br>
+      • สีถูกจำอัตโนมัติสำหรับครั้งถัดไป
+    </p>
   </div>
 
-  <div class="field">
-    <label>เวลาปิดรับ</label>
-    <select id="iTime">
-      <option value="14.00 น.">14.00 น.</option>
-      <option value="14.30 น.">14.30 น.</option>
-    </select>
-  </div>
-
-  <div class="field">
-    <label>ตัวเลข (บรรทัดละเลข)</label>
-    <textarea id="iNums" spellcheck="false"
-      placeholder="เลข 3 ตัว เช่น 359&#10;เลข 2 ตัว เช่น 05-50&#10;&#10;วางได้เลย ไม่ต้องเรียงประเภท"></textarea>
-  </div>
-
-  <div class="field">
-    <label>สีหลัก</label>
-    <div class="color-row">
-      <input type="color" id="colorPicker" value="#005CEF">
-      <input type="text" class="color-hex" id="colorHex" maxlength="7" value="#005CEF">
-      <button class="color-reset" onclick="resetColor()">reset</button>
+  <!-- ── CARD ── -->
+  <div>
+    <div id="card">
+      <div class="c-header" id="cHeader">เลขอั้น</div>
+      <div class="c-body" id="cBody"></div>
+      <div class="c-footer" id="cFooter">
+        เลขดังคืนได้ ถ้าซ้ำให้รับแจ้ง<br>
+        เวลายกเลิกบอกด้วยว่ายกเลิกที่ข้อความ<br>
+        กรุณาเขียนให้ชัดเจน ตัวเลข, จำนวนเงิน, บน-ล่าง, กลับหรือไม่กลับ<br>
+        หากมีปัญหาจะยึดตามดุลพินิจเจ้ามือเป็นหลัก<br>
+        ส่งมาแล้วถือว่ารับทุกใบ <span class="hl" id="fTime">ปิดรับ 14.00 น.</span><br>
+        กรุณารักษาเวลาด้วยครับ
+      </div>
     </div>
   </div>
 
-  <hr class="divider">
+  <script>
+    /* ── Constants ── */
+    const DEFAULT_COLOR = '#005CEF';
+    const LS_KEY = 'lottoColor';
 
-  <label class="toggle-label">
-    <input type="checkbox" id="toggleDetail">
-    โชว์เฉพาะตัวเลข + วันที่<br>(ปริ้นแบบเรียบ)
-  </label>
+    /* ── Thai date ── */
+    const MONTHS = [
+      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน',
+      'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',
+      'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+    ];
 
-  <button class="btn btn-blue" onclick="exportJPG()">📷 Export JPG</button>
-  <button class="btn btn-gray" onclick="window.print()">🖨️ Print / Save PDF</button>
+    function thaiDate(val) {
+      const [y, m, d] = val.split('-').map(Number);
+      return `${d} ${MONTHS[m - 1]} พ.ศ. ${y + 543}`;
+    }
 
-  <p class="hint">
-    • เลข 3 ตัว: ตัวเลขล้วน <strong>359</strong><br>
-    • เลข 2 ตัว: มีขีด <strong>05-50</strong><br>
-    • สีถูกจำอัตโนมัติสำหรับครั้งถัดไป
-  </p>
-</div>
+    function todayStr() {
+      const n = new Date();
+      return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`;
+    }
 
-<!-- ── CARD ── -->
-<div>
-  <div id="card">
-    <div class="c-header" id="cHeader">เลขอั้น</div>
-    <div class="c-body" id="cBody"></div>
-    <div class="c-footer" id="cFooter">
-      เลขดังคืนได้ ถ้าซ้ำให้รับแจ้ง<br>
-      เวลายกเลิกบอกด้วยว่ายกเลิกที่ข้อความ<br>
-      กรุณาเขียนให้ชัดเจน ตัวเลข, จำนวนเงิน, บน-ล่าง, กลับหรือไม่กลับ<br>
-      หากมีปัญหาจะยึดตามดุลพินิจเจ้ามือเป็นหลัก<br>
-      ส่งมาแล้วถือว่ารับทุกใบ <span class="hl" id="fTime">ปิดรับ 14.00 น.</span><br>
-      กรุณารักษาเวลาด้วยครับ
-    </div>
-  </div>
-</div>
+    /* ── Color system ── */
+    function applyColor(hex) {
+      // Validate hex
+      if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
 
-<script>
-/* ── Constants ── */
-const DEFAULT_COLOR = '#005CEF';
-const LS_KEY = 'lottoColor';
+      document.documentElement.style.setProperty('--mc', hex);
+      document.getElementById('colorPicker').value = hex;
+      document.getElementById('colorHex').value = hex;
 
-/* ── Thai date ── */
-const MONTHS = [
-  'มกราคม','กุมภาพันธ์','มีนาคม','เมษายน',
-  'พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม',
-  'กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'
-];
+      // Update btn-blue background directly (CSS var on button works, but make sure)
+      document.querySelectorAll('.btn-blue').forEach(el => el.style.background = hex);
+      document.getElementById('controls').querySelector('h2').style.color = hex;
 
-function thaiDate(val) {
-  const [y, m, d] = val.split('-').map(Number);
-  return `${d} ${MONTHS[m - 1]} พ.ศ. ${y + 543}`;
-}
+      // Save
+      localStorage.setItem(LS_KEY, hex);
+    }
 
-function todayStr() {
-  const n = new Date();
-  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
-}
+    function resetColor() {
+      applyColor(DEFAULT_COLOR);
+    }
 
-/* ── Color system ── */
-function applyColor(hex) {
-  // Validate hex
-  if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+    // Color picker change
+    document.getElementById('colorPicker').addEventListener('input', function () {
+      applyColor(this.value);
+    });
 
-  document.documentElement.style.setProperty('--mc', hex);
-  document.getElementById('colorPicker').value = hex;
-  document.getElementById('colorHex').value = hex;
+    // Hex text input — apply on Enter or blur
+    function tryHexInput() {
+      const v = document.getElementById('colorHex').value.trim();
+      const hex = v.startsWith('#') ? v : '#' + v;
+      applyColor(hex);
+    }
+    document.getElementById('colorHex').addEventListener('keydown', e => {
+      if (e.key === 'Enter') tryHexInput();
+    });
+    document.getElementById('colorHex').addEventListener('blur', tryHexInput);
 
-  // Update btn-blue background directly (CSS var on button works, but make sure)
-  document.querySelectorAll('.btn-blue').forEach(el => el.style.background = hex);
-  document.getElementById('controls').querySelector('h2').style.color = hex;
+    /* ── Parse numbers ── */
+    function parseNums(text) {
+      const three = [], two = [];
+      text.split('\n').forEach(line => {
+        line = line.trim();
+        if (!line) return;
+        if (line.includes('-')) two.push(line);
+        else if (/^\d+$/.test(line)) three.push(line);
+      });
+      return { three, two };
+    }
 
-  // Save
-  localStorage.setItem(LS_KEY, hex);
-}
+    function splitCols(arr) {
+      const h = Math.ceil(arr.length / 2);
+      return [arr.slice(0, h), arr.slice(h)];
+    }
 
-function resetColor() {
-  applyColor(DEFAULT_COLOR);
-}
+    function numsHTML(arr) {
+      if (!arr.length) return '';
+      const [L, R] = splitCols(arr);
+      const col = a => `<div class="nums-col">${a.map(n => `<div class="num">${n}</div>`).join('')
+        }</div>`;
+      return `<div class="nums">${col(L)}${R.length ? col(R) : ''}</div>`;
+    }
 
-// Color picker change
-document.getElementById('colorPicker').addEventListener('input', function () {
-  applyColor(this.value);
-});
+    /* ── Render card ── */
+    function render() {
+      const dateVal = document.getElementById('iDate').value;
+      const timeVal = document.getElementById('iTime').value;
+      const numsVal = document.getElementById('iNums').value;
 
-// Hex text input — apply on Enter or blur
-function tryHexInput() {
-  const v = document.getElementById('colorHex').value.trim();
-  const hex = v.startsWith('#') ? v : '#' + v;
-  applyColor(hex);
-}
-document.getElementById('colorHex').addEventListener('keydown', e => {
-  if (e.key === 'Enter') tryHexInput();
-});
-document.getElementById('colorHex').addEventListener('blur', tryHexInput);
+      document.getElementById('cHeader').textContent =
+        dateVal ? 'เลขอั้น ' + thaiDate(dateVal) : 'เลขอั้น';
 
-/* ── Parse numbers ── */
-function parseNums(text) {
-  const three = [], two = [];
-  text.split('\n').forEach(line => {
-    line = line.trim();
-    if (!line) return;
-    if (line.includes('-')) two.push(line);
-    else if (/^\d+$/.test(line)) three.push(line);
-  });
-  return { three, two };
-}
+      document.getElementById('fTime').textContent = 'ปิดรับ ' + timeVal;
 
-function splitCols(arr) {
-  const h = Math.ceil(arr.length / 2);
-  return [arr.slice(0, h), arr.slice(h)];
-}
+      const { three, two } = parseNums(numsVal);
+      let html = '';
 
-function numsHTML(arr) {
-  if (!arr.length) return '';
-  const [L, R] = splitCols(arr);
-  const col = a => `<div class="nums-col">${
-    a.map(n => `<div class="num">${n}</div>`).join('')
-  }</div>`;
-  return `<div class="nums">${col(L)}${R.length ? col(R) : ''}</div>`;
-}
-
-/* ── Render card ── */
-function render() {
-  const dateVal = document.getElementById('iDate').value;
-  const timeVal = document.getElementById('iTime').value;
-  const numsVal = document.getElementById('iNums').value;
-
-  document.getElementById('cHeader').textContent =
-    dateVal ? 'เลขอั้น ' + thaiDate(dateVal) : 'เลขอั้น';
-
-  document.getElementById('fTime').textContent = 'ปิดรับ ' + timeVal;
-
-  const { three, two } = parseNums(numsVal);
-  let html = '';
-
-  if (three.length) {
-    html += `
+      if (three.length) {
+        html += `
       <div class="section">
         ${numsHTML(three)}
         <div class="arrow">→</div>
         <div class="lbl">บน-เต็ง-โต๊ด<br>หกกลับ สามกลับ<br>จ่ายครึ่งราคา</div>
       </div>`;
-  }
+      }
 
-  if (three.length && two.length) html += '<hr class="sep">';
+      if (three.length && two.length) html += '<hr class="sep">';
 
-  if (two.length) {
-    html += `
+      if (two.length) {
+        html += `
       <div class="section">
         ${numsHTML(two)}
         <div class="arrow">→</div>
         <div class="lbl">2 ตัว บน – ล่าง<br>จ่ายครึ่งราคา</div>
       </div>`;
-  }
+      }
 
-  document.getElementById('cBody').innerHTML = html;
-}
+      document.getElementById('cBody').innerHTML = html;
+    }
 
-/* ── Toggle detail ── */
-document.getElementById('toggleDetail').addEventListener('change', function () {
-  document.getElementById('card').classList.toggle('no-detail', this.checked);
-});
+    /* ── Toggle detail ── */
+    document.getElementById('toggleDetail').addEventListener('change', function () {
+      document.getElementById('card').classList.toggle('no-detail', this.checked);
+    });
 
-/* ── Live update ── */
-['iDate', 'iTime', 'iNums'].forEach(id => {
-  document.getElementById(id).addEventListener('input', render);
-  document.getElementById(id).addEventListener('change', render);
-});
+    /* ── Live update ── */
+    ['iDate', 'iTime', 'iNums'].forEach(id => {
+      document.getElementById(id).addEventListener('input', render);
+      document.getElementById(id).addEventListener('change', render);
+    });
 
-/* ── Export JPG ── */
-async function exportJPG() {
-  await document.fonts.ready;
-  const card = document.getElementById('card');
-  const canvas = await html2canvas(card, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: '#ffffff',
-    logging: false
-  });
-  const a = document.createElement('a');
-  a.download = `เลขอั้น_${document.getElementById('iDate').value || 'export'}.jpg`;
-  a.href = canvas.toDataURL('image/jpeg', 0.95);
-  a.click();
-}
+    /* ── Export JPG ── */
+    async function exportJPG() {
+      await document.fonts.ready;
+      const card = document.getElementById('card');
+      const canvas = await html2canvas(card, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+      const a = document.createElement('a');
+      a.download = `เลขอั้น_${document.getElementById('iDate').value || 'export'}.jpg`;
+      a.href = canvas.toDataURL('image/jpeg', 0.95);
+      a.click();
+    }
 
-/* ── Init ── */
-document.getElementById('iDate').value = todayStr();
+    /* ── Init ── */
+    document.getElementById('iDate').value = todayStr();
 
-// Load saved color (or default)
-const savedColor = localStorage.getItem(LS_KEY) || DEFAULT_COLOR;
-applyColor(savedColor);
+    // Load saved color (or default)
+    const savedColor = localStorage.getItem(LS_KEY) || DEFAULT_COLOR;
+    applyColor(savedColor);
 
-render();
-</script>
+    render();
+  </script>
 </body>
+
 </html>
