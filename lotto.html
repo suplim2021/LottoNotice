@@ -279,7 +279,7 @@
       flex: 1;
       text-align: center;
       font-size: 30px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.45;
       color: #111;
     }
@@ -293,17 +293,17 @@
     /* Footer — 18.5pt = 24.67px */
     .c-footer {
       border-top: 2.5px solid #111;
-      padding: 14px 26px 20px;
+      padding: 14px 14px 14px;
       text-align: center;
-      font-size: 24.5px;
-      font-weight: 800;
+      font-size: 24px;
+      font-weight: 700;
       line-height: 1.75;
       color: #111;
     }
 
     .c-footer .hl {
       font-size: 26px;
-      font-weight: 900;
+      font-weight: 700;
       color: red;
     }
 
@@ -488,16 +488,27 @@
     }
 
     function splitCols(arr) {
-      const h = Math.ceil(arr.length / 2);
-      return [arr.slice(0, h), arr.slice(h)];
+      if (arr.length === 0) return [];
+
+      let cols = 1;
+      if (arr.length > 4 && arr.length <= 10) cols = 2;
+      else if (arr.length > 10 && arr.length <= 18) cols = 3;
+      else if (arr.length > 18) cols = 4;
+
+      const itemsPerCol = Math.ceil(arr.length / cols);
+      const result = [];
+      for (let i = 0; i < cols; i++) {
+        const chunk = arr.slice(i * itemsPerCol, (i + 1) * itemsPerCol);
+        if (chunk.length > 0) result.push(chunk);
+      }
+      return result;
     }
 
     function numsHTML(arr) {
       if (!arr.length) return '';
-      const [L, R] = splitCols(arr);
-      const col = a => `<div class="nums-col">${a.map(n => `<div class="num">${n}</div>`).join('')
-        }</div>`;
-      return `<div class="nums">${col(L)}${R.length ? col(R) : ''}</div>`;
+      const cols = splitCols(arr);
+      const colHTML = a => `<div class="nums-col">${a.map(n => `<div class="num">${n}</div>`).join('')}</div>`;
+      return `<div class="nums">${cols.map(c => colHTML(c)).join('')}</div>`;
     }
 
     /* ── Render card ── */
